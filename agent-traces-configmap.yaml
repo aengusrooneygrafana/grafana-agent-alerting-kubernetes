@@ -4,6 +4,25 @@ data:
     server:
         http_listen_port: 8080
         log_level: debug
+    prometheus:
+      global:
+        scrape_interval: 30s
+      wal_directory: /tmp/
+      configs:
+        - name: metrics-for-trace-agent-conf
+          host_filter: false
+          remote_write:
+          - url: $YOUR_REMOTE_WRITE_URL
+            basic_auth:
+              username: $YOUR_REMOTE_WRITE_USERNAME
+              password: $YOUR_REMOTE_WRITE_PASSWORD
+          scrape_configs:
+            - job_name: metrics-for-trace-agent-job
+              static_configs:
+                - targets: ['127.0.0.1:8080']
+                  labels:
+                    container: 'grafana-agent-traces'
+                    pod: 'grafana-agent-traces'
     traces:
         configs:
           - batch:
