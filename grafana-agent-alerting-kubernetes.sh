@@ -6,13 +6,13 @@ export THEDATE=`date +%y%m%d%H`
 gcloud container clusters create se-rooney-$THEDATE --num-nodes 3 
 kubectl config current-context
 
-#### Create new Grafana.com org or stack on 
+#### Create a new org or stack on Grafana.com 
 
 open -g -a "Google Chrome" https://grafana.com/orgs/aengusrooneytest 
 
-#### SOURCE THE GRAFANA.COM ENVIRONMENT VARIABLES 
+#### SOURCE THE GRAFANA.COM ENVIRONMENT VARIABLES (env file with your grafana.com credentials)
 
-source ./set_env.sh
+source /Users/aengusrooney/grafana-dot-com-env/set_env.sh
 
 #### CHECK ENVIRONMENT VARIABLES HAVE BEEN SOURCED 
 
@@ -42,13 +42,13 @@ kc get po -n default
 
 #### BROWSE METRIECS AND LOGS 
 
-open -g -a "Google Chrome"  https://aengusrooney0301.grafana.net/explore
+open -g -a "Google Chrome"  https://aengusrooneytest.grafana.net/explore
 
 #### Alerting  
 
 # k8s integration installs a new set of alerts  
 
-open -g -a "Google Chrome" https://aengusrooney0301.grafana.net/a/grafana-easystart-app/integrations-management/integrations 
+open -g -a "Google Chrome" https://aengusrooneytest.grafana.net/a/grafana-easystart-app/integrations-management/integrations 
 
 # CORTEXTOOL 
 
